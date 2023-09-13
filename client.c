@@ -6,32 +6,39 @@
 /*   By: rumachad <rumachad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 13:42:45 by rumachad          #+#    #+#             */
-/*   Updated: 2023/09/12 16:22:45 by rumachad         ###   ########.fr       */
+/*   Updated: 2023/09/13 13:28:21 by rumachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void bits(char c)
+void	bits(int pid, char c)
 {
-	int i;
-	char a;
+	int	i;
+	int	bit;
 
-	i = 0;
-	while (i < 8)
+	i = 7;
+	while (i >= 0)
 	{
-		a = (c >> i) & 1;
-		i++;
+		bit = (c >> i) & 1;
+		if (bit == 0)
+			kill(pid, SIGUSR1);
+		else if (bit == 1)
+			kill(pid, SIGUSR2);
+		usleep(100);
+		i--;
 	}
-	printf("%c\n", a);
 }
 
 int	main(int argc, char **argv)
 {
 	int	pid;
+	int	i;
 	
 	if (argc != 3)
 		write(1, "\n", 1);
 	pid = ft_atoi(argv[1]);
-	kill(pid, SIGUSR1);
+	i = -1;
+	while (argv[2][++i])
+		bits(pid, argv[2][i]);
 }
