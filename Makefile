@@ -6,7 +6,7 @@
 #    By: rumachad <rumachad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/12 13:46:46 by rumachad          #+#    #+#              #
-#    Updated: 2023/09/13 16:04:42 by rumachad         ###   ########.fr        #
+#    Updated: 2023/09/14 16:38:56 by rumachad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ ${NAME}:
 			${CC} ${CFLAGS} -c server.c
 			${CC} ${CFLAGS} -c client.c
 			make -C ${LIBFT_DIR}
-			${CC} ${CFLAGS} server.o ${LIBFT_PATH} -o server
 			${CC} ${CFLAGS} client.o ${LIBFT_PATH} -o client
+			${CC} ${CFLAGS} server.o ${LIBFT_PATH} -o server
 			
 
 all:	${NAME}

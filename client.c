@@ -6,13 +6,13 @@
 /*   By: rumachad <rumachad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 13:42:45 by rumachad          #+#    #+#             */
-/*   Updated: 2023/09/13 13:28:21 by rumachad         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:40:09 by rumachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	bits(int pid, char c)
+void	send_bit(int server_pid, char c)
 {
 	int	i;
 	int	bit;
@@ -22,23 +22,41 @@ void	bits(int pid, char c)
 	{
 		bit = (c >> i) & 1;
 		if (bit == 0)
-			kill(pid, SIGUSR1);
+			kill(server_pid, SIGUSR1);
 		else if (bit == 1)
-			kill(pid, SIGUSR2);
-		usleep(100);
+			kill(server_pid, SIGUSR2);
+		pause();
 		i--;
 	}
 }
 
+void	client_signal_handle(int sig, siginfo_t *info, void *ucontext)
+{
+	info->si_pid = info->si_pid;
+	if (sig == SIGUSR1)
+		ft_printf("Bit 0 received\n");
+	else if (sig == SIGUSR2)
+		ft_printf("Bit 1 received \n");
+	(void)ucontext;
+}
+
 int	main(int argc, char **argv)
 {
-	int	pid;
-	int	i;
-	
+	int					i;
+	int					server_pid;
+	struct sigaction	sig;
+
 	if (argc != 3)
-		write(1, "\n", 1);
-	pid = ft_atoi(argv[1]);
+	{
+		ft_printf("More arguments\n");
+		exit(EXIT_FAILURE);
+	}
+	sig.sa_sigaction = client_signal_handle;
+	sigaction(SIGUSR1, &sig, NULL);
+	sigaction(SIGUSR2, &sig, NULL);
+	server_pid = ft_atoi(argv[1]);
 	i = -1;
 	while (argv[2][++i])
-		bits(pid, argv[2][i]);
+		send_bit(server_pid, argv[2][i]);
+	return (0);
 }
