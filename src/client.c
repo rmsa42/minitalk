@@ -6,7 +6,7 @@
 /*   By: rumachad <rumachad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 13:42:45 by rumachad          #+#    #+#             */
-/*   Updated: 2023/09/14 16:40:09 by rumachad         ###   ########.fr       */
+/*   Updated: 2023/09/18 12:58:39 by rumachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,18 @@ int	main(int argc, char **argv)
 
 	if (argc != 3)
 	{
-		ft_printf("More arguments\n");
+		ft_printf("Invalid arguments\n");
 		exit(EXIT_FAILURE);
 	}
+	sig.sa_flags = SA_SIGINFO;
 	sig.sa_sigaction = client_signal_handle;
-	sigaction(SIGUSR1, &sig, NULL);
-	sigaction(SIGUSR2, &sig, NULL);
+	if (sigaction(SIGUSR1, &sig, NULL) == -1
+		|| sigaction(SIGUSR2, &sig, NULL) == -1)
+		exit(EXIT_FAILURE);
 	server_pid = ft_atoi(argv[1]);
 	i = -1;
 	while (argv[2][++i])
 		send_bit(server_pid, argv[2][i]);
+	send_bit(server_pid, '\n');
 	return (0);
 }
