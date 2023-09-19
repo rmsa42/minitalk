@@ -6,7 +6,7 @@
 /*   By: rumachad <rumachad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:21:22 by rumachad          #+#    #+#             */
-/*   Updated: 2023/09/18 16:50:18 by rumachad         ###   ########.fr       */
+/*   Updated: 2023/09/19 11:31:11 by rumachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	bit_arrange(int sig, pid_t client_pid)
 		kill(client_pid, SIGUSR2);
 }
 
-void	signal_handle(int sig, siginfo_t *info, void *ucontext)
+void	signal_handler(int sig, siginfo_t *info, void *ucontext)
 {
 	if (sig == SIGUSR1)
 		bit_arrange(0, info->si_pid);
@@ -50,7 +50,7 @@ int	main(void)
 
 	sigemptyset(&(sig.sa_mask));
 	sig.sa_flags = SA_SIGINFO;
-	sig.sa_sigaction = signal_handle;
+	sig.sa_sigaction = signal_handler;
 	pid = getpid();
 	ft_printf("PID: %d\n", pid);
 	ft_printf("Waiting for Message...\n\n");

@@ -6,7 +6,7 @@
 /*   By: rumachad <rumachad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 12:03:39 by rumachad          #+#    #+#             */
-/*   Updated: 2023/09/18 16:44:22 by rumachad         ###   ########.fr       */
+/*   Updated: 2023/09/19 11:35:53 by rumachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	bit_arrange(int sig)
 	}
 }
 
-void	signal_handle(int sig)
+void	signal_handler(int sig)
 {
 	if (sig == SIGUSR1)
 		bit_arrange(0);
@@ -44,8 +44,8 @@ int	main(void)
 	struct sigaction	sig;
 
 	sig.sa_flags = 0;
-	sigemptyset(&(sig.sa_mask));	
-	sig.sa_handler = signal_handle;
+	sigemptyset(&(sig.sa_mask));
+	sig.sa_handler = signal_handler;
 	pid = getpid();
 	ft_printf("PID: %d\n", pid);
 	ft_printf("Waiting for Message...\n\n");

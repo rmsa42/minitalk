@@ -6,7 +6,7 @@
 /*   By: rumachad <rumachad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:21:12 by rumachad          #+#    #+#             */
-/*   Updated: 2023/09/18 16:50:49 by rumachad         ###   ########.fr       */
+/*   Updated: 2023/09/19 11:31:21 by rumachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	send_bit(int server_pid, char c)
 	}
 }
 
-void	client_signal_handle(int sig, siginfo_t *info, void *ucontext)
+void	client_signal_handler(int sig, siginfo_t *info, void *ucontext)
 {
 	info->si_pid = info->si_pid;
 	if (sig == SIGUSR1)
@@ -56,7 +56,7 @@ int	main(int argc, char **argv)
 	}
 	sigemptyset(&(sig.sa_mask));
 	sig.sa_flags = SA_SIGINFO;
-	sig.sa_sigaction = client_signal_handle;
+	sig.sa_sigaction = client_signal_handler;
 	if (sigaction(SIGUSR1, &sig, NULL) == -1
 		|| sigaction(SIGUSR2, &sig, NULL) == -1)
 		exit(EXIT_FAILURE);
