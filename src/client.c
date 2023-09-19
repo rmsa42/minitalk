@@ -6,13 +6,13 @@
 /*   By: rumachad <rumachad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 13:42:45 by rumachad          #+#    #+#             */
-/*   Updated: 2023/09/19 11:33:56 by rumachad         ###   ########.fr       */
+/*   Updated: 2023/09/19 12:34:56 by rumachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../libft/libft.h"
-# include <signal.h>
-# include <sys/types.h>
+#include "../libft/libft.h"
+#include <signal.h>
+#include <sys/types.h>
 
 void	send_bit(int server_pid, char c)
 {

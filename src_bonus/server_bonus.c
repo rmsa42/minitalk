@@ -6,13 +6,13 @@
 /*   By: rumachad <rumachad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:21:22 by rumachad          #+#    #+#             */
-/*   Updated: 2023/09/19 11:31:11 by rumachad         ###   ########.fr       */
+/*   Updated: 2023/09/19 12:35:09 by rumachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../libft/libft.h"
-# include <signal.h>
-# include <sys/types.h>
+#include "../libft/libft.h"
+#include <signal.h>
+#include <sys/types.h>
 
 void	bit_arrange(int sig, pid_t client_pid)
 {
