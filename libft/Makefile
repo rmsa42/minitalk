@@ -6,7 +6,7 @@
 #    By: rumachad <rumachad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/18 15:31:41 by rumachad          #+#    #+#              #
-#    Updated: 2023/09/18 14:45:23 by rumachad         ###   ########.fr        #
+#    Updated: 2023/09/20 10:40:46 by rumachad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ CFLAGS = -Wall -Werror -Wextra
 		${CC} ${CFLAGS} ${INCLUDE} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-			ar rcs libft.a ${OBJS} ${HEADER}
+			ar rcs libft.a ${OBJS}
 
 all:	${NAME}
 

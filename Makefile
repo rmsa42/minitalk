@@ -6,7 +6,7 @@
 #    By: rumachad <rumachad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/12 13:46:46 by rumachad          #+#    #+#              #
-#    Updated: 2023/09/19 11:27:25 by rumachad         ###   ########.fr        #
+#    Updated: 2023/09/20 10:51:45 by rumachad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,25 @@ CC = cc
 RM = rm -f
 CFLAGS = -Wall -Werror -Wextra
 
-${NAME}:	
-			make -C ${LIBFT_DIR}
-			${CC} ${CFLAGS} src/server.c ${LIBFT} -o server
-			${CC} ${CFLAGS} src/client.c ${LIBFT} -o client
+${NAME}:	server client
 
-${BONUS}:
-			make -C ${LIBFT_DIR}
-			${CC} ${CFLAGS} src_bonus/server_bonus.c ${LIBFT} -o server
-			${CC} ${CFLAGS} src_bonus/client_bonus.c ${LIBFT} -o client
+${BONUS}:	server_bonus client_bonus
+
+server:
+		make -C ${LIBFT_DIR}
+		${CC} ${CFLAGS} src/server.c ${LIBFT} -o server
+
+client:
+		make -C ${LIBFT_DIR}
+		${CC} ${CFLAGS} src/client.c ${LIBFT} -o client
+
+server_bonus:
+				make -C ${LIBFT_DIR}
+				${CC} ${CFLAGS} src_bonus/server_bonus.c ${LIBFT} -o server
+			
+client_bonus:
+				make -C ${LIBFT_DIR}
+				${CC} ${CFLAGS} src_bonus/client_bonus.c ${LIBFT} -o client
 
 all:	${NAME}
 
