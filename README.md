@@ -33,7 +33,7 @@ So if the `server` receives the bit `1`, we will operate the zero `00000000` in 
 
 Ok, this is only for the first bit, now for the second and beyond. For the subsequent bits, that are `1`,  what we want to know it's the order (if it was the first, `order = 1`, etc ...) because depending on the order we will make another `bitwise` operation called `Left Shift`. Basically we will left shift our number one `000000001` 8 times `-` the number of the order of the bit. So if the `order = 2` and it's a bit `1` we will left shift `8 - 2` the `00000001` and the result is `01000000`.
 
-Now with this result `01000000` we will make the `OR` operartion against `00000000` and the result will be `01000000`. Basically we just put the bit `1` in rigth spot everu time and in the eigth time we print the char.
+Now with this result `01000000` we will make the `OR` operartion against `00000000` and the result will be `01000000`. Basically we just put the bit `1` in rigth spot every time and in the eigth time we print the char.
 
 ## About Signals
 In a Unix system we have a lot of `signals`, whom have their own purpose, like `SIGINT` which is a interrupt signal, but in all this `signals` there are two that their purpose is defined by the `user`. The `signals` i am talking about are the `SIGUSR1` and `SIGUSR2`, these don't have predifined purposes so i can use them for whatever i want. (More about [signals](https://www.tutorialspoint.com/unix/unix-signals-traps.htm))
